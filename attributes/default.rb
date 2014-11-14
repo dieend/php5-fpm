@@ -39,25 +39,20 @@ when "centos", "redhat", "fedora"
 											] #Option to add more or remove, override if needed or disable
 end
 
-#Set php-fpm.conf configuration
-default["php_fpm"]["config"] = 
-'{ 	"config":
-	{
-		"pid": "/var/run/php5-fpm.pid",
-		"error_log": "/var/log/php5-fpm.log",
-		"syslog.facility": "daemon",
-		"syslog.ident": "php-fpm",
-		"log_level": "notice",
-		"emergency_restart_threshold": "0",
-		"emergency_restart_interval": "0",
-		"process_control_timeout": "0",
-		"process.max": "0",
-		"daemonize": "yes",
-		"rlimit_files": "NOT_SET",
-		"rlimit_core": "NOT_SET",
-		"events.mechanism": "NOT_SET"
-	}
-}'
+default[:php_fpm][:fpm][:pid] = "/var/run/php5-fpm.pid"
+default[:php_fpm][:fpm][:error_log] = "/var/log/php5-fpm.log"
+default[:php_fpm][:fpm][:syslog][:facility] = "daemon"
+default[:php_fpm][:fpm][:syslog][:ident] = "php-fpm"
+default[:php_fpm][:fpm][:log_level] = "notice"
+default[:php_fpm][:fpm][:emergency_restart_threshold] = 0
+default[:php_fpm][:fpm][:emergency_restart_interval] = 0
+default[:php_fpm][:fpm][:process_control_timeout] = 0
+default[:php_fpm][:fpm][:process_max] = 0
+default[:php_fpm][:fpm][:process_priority] = nil
+default[:php_fpm][:fpm][:daemonize] = "yes"
+default[:php_fpm][:fpm][:rlimit_files] = nil
+default[:php_fpm][:fpm][:events_mechanism] = nil
+	
 
 #Set pool configuration, default pool		
 default["php_fpm"]["pools"] = 
