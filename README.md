@@ -139,8 +139,6 @@ attribute :access_log, :kind_of => String, :required => false, :default => nil
 attribute :slow_log, :kind_of => String, :required => false, :default => nil
 
 #Misc
-attribute :chdir, :kind_of => String, :required => false, :default => '/'
-attribute :chroot, :kind_of => String, :required => false, :default => nil
 attribute :catch_workers_output, :kind_of => String, :required => false, :equal_to => ['yes', 'no'], :default => 'no'
 attribute :security_limit_extensions, :kind_of => String, :required => false, :default => '.php'
 attribute :rlimit_files, :kind_of => Integer, :required => false, :default => nil

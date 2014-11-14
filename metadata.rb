@@ -11,3 +11,5 @@ supports 'debian', ">= 6.0"
 supports 'centOS', ">= 6.5"
 supports 'Redhat'
 supports 'Fedora', ">= 20.0"
+
+depends 'ohai',            '~> 2.0'
