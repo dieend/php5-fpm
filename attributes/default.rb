@@ -17,8 +17,8 @@ case node[:platform]
 when "ubuntu", "debian"
 	default["php_fpm"]["package"] = "php5-fpm"
 	default["php_fpm"]["base_path"] = "/etc/php5/fpm"
-	default["php_fpm"]["conf_file"] = node[:platform_version].include?("10.04") ? "php5-fpm.conf" = "php-fpm.conf"
-	default["php_fpm"]["pools_path"] = node[:platform_version].include?("10.04") ? "#{node[:php_fpm][:base_path]}/fpm.d" = "#{node[:php_fpm][:base_path]}/pool.d"
+	default["php_fpm"]["conf_file"] = node[:platform_version].include?("10.04") ? "php5-fpm.conf" : "php-fpm.conf"
+	default["php_fpm"]["pools_path"] = node[:platform_version].include?("10.04") ? "#{node[:php_fpm][:base_path]}/fpm.d" : "#{node[:php_fpm][:base_path]}/pool.d"
 	default["php_fpm"]["pools_include"] = "include=#{node[:php_fpm][:pools_path]}/*.conf"
 	default["php_fpm"]["php_modules"] = [ 'php5-common', 
 											'php5-mysql', 
@@ -60,9 +60,9 @@ default[:php_fpm][:pools][:www][:user] = "www-data"
 default[:php_fpm][:pools][:www][:group] = "www-data"
 default[:php_fpm][:pools][:www][:listen] = "/var/run/php5-fpm.sock"
 default[:php_fpm][:pools][:www][:pm] = "dynamic"
-default[:php_fpm][:pools][:www][:pm_allocated_memory] = node['memory'] && node['memory']['total'] ? (0.75 * node['memory']['total'].to_i / 1000).to_i : nil
+default[:php_fpm][:pools][:www][:pm_allocated_memory] = node['memory'] && node['memory']['total'] ? (0.75 * node['memory']['total'].to_i / 1024).to_i : nil
 default[:php_fpm][:pools][:www][:pm_children_memory] = 40
-default[:php_fpm][:pools][:www][:pm_max_children] = node[:php_fpm][:pools][:www][:pm_allocated_memory].nil? 10 : (node[:php_fpm][:pools][:www][:pm_allocated_memory] / node[:php_fpm][:pools][:www][:pm_children_memory]).to_i
+default[:php_fpm][:pools][:www][:pm_max_children] = node[:php_fpm][:pools][:www][:pm_allocated_memory].nil? ? 10 : (node[:php_fpm][:pools][:www][:pm_allocated_memory] / node[:php_fpm][:pools][:www][:pm_children_memory]).to_i
 default[:php_fpm][:pools][:www][:pm_start_servers] = (0.3 * node[:php_fpm][:pools][:www][:pm_max_children]).to_i
 default[:php_fpm][:pools][:www][:pm_min_spare_servers] = (0.1 * node[:php_fpm][:pools][:www][:pm_max_children]).to_i
 default[:php_fpm][:pools][:www][:pm_max_spare_servers] = (0.5 * node[:php_fpm][:pools][:www][:pm_max_children]).to_i
