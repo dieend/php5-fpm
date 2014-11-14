@@ -56,6 +56,7 @@ default[:php_fpm][:fpm][:events_mechanism] = nil
 
 #Set pool configuration, default pool		
 default[:php_fpm][:pools][:www]
+default[:php_fpm][:pools][:www][:log_dir] = "/var/log/php5-fpm/www"
 default[:php_fpm][:pools][:www][:user] = "www-data"
 default[:php_fpm][:pools][:www][:group] = "www-data"
 default[:php_fpm][:pools][:www][:listen] = "/var/run/php5-fpm.sock"
@@ -71,9 +72,9 @@ default[:php_fpm][:pools][:www][:pm_max_requests] = 500
 default[:php_fpm][:pools][:www][:pm_status_path] = "/statusurbanindofpmwherewewant.php"
 default[:php_fpm][:pools][:www][:ping_path] = "/heathcheck.php"
 default[:php_fpm][:pools][:www][:ping_response] = nil
-default[:php_fpm][:pools][:www][:access_log] = "/var/log/php5-fpm/www/access.log"
+default[:php_fpm][:pools][:www][:access_log] = "#{node[:php_fpm][:pools][:www][:log_dir]}/access.log"
 default[:php_fpm][:pools][:www][:access_format] = "%R - %u %t \"%m %r%Q%q\" %s %f %{mili}d %{kilo}M %C%%"
-default[:php_fpm][:pools][:www][:slowlog] = "/var/log/php5-fpm/www/slow.log"
+default[:php_fpm][:pools][:www][:slowlog] = "#{node[:php_fpm][:pools][:www][:log_dir]}/slow.log"
 default[:php_fpm][:pools][:www][:request_slowlog_timeout] = "30s"
 default[:php_fpm][:pools][:www][:request_terminate_timeout] = "0"
 default[:php_fpm][:pools][:www][:catch_workers_output] = "no"

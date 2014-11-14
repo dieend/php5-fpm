@@ -14,6 +14,13 @@
 
 #Loop through pools and generate configuration
 node[:php_fpm][:pools].each do |pool,configuration|
+	directory node[:php_fpm][:pools][:www][:log_dir] do
+		owner 'root'
+		group 'root'
+		mode '0666'
+		recursive true
+		action :create
+	end
 
 	#Create Pool Configuration
 	template "#{node[:php_fpm][:pools_path]}/#{pool}.conf" do
