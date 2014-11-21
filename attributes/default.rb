@@ -60,6 +60,7 @@ default[:php_fpm][:pools][:www][:log_dir] = "/var/log/php5-fpm/www"
 default[:php_fpm][:pools][:www][:user] = "www-data"
 default[:php_fpm][:pools][:www][:group] = "www-data"
 default[:php_fpm][:pools][:www][:listen] = "/var/run/php5-fpm.sock"
+default[:php_fpm][:pools][:www][:listen_backlog] = "65535"
 default[:php_fpm][:pools][:www][:pm] = "dynamic"
 default[:php_fpm][:pools][:www][:pm_allocated_memory] = node['memory'] && node['memory']['total'] ? (0.75 * node['memory']['total'].to_i / 1024).to_i : nil
 default[:php_fpm][:pools][:www][:pm_children_memory] = 40

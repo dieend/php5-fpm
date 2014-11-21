@@ -35,6 +35,7 @@ listen = <%=@config[:listen] %>
 ; Set listen(2) backlog.
 ; Default Value: 65535 (-1 on FreeBSD and OpenBSD)
 ;listen.backlog = 65535
+listen.backlog = <%=@config[:listen_backlog] %>
 
 ; Set permissions for unix socket, if one is used. In Linux, read/write
 ; permissions must be set in order to allow connections from a web server. Many
