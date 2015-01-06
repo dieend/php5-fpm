@@ -1,8 +1,8 @@
 
 #Global options, install php modules and users(optional)
 default["php_fpm"]["install_php_modules"] = "true"
-default["php_fpm"]["update_system"] = "false"
-default["php_fpm"]["upgrade_system"] = "false"
+default["php_fpm"]["update_system"] = false
+default["php_fpm"]["upgrade_system"] = false
 
 default["php_fpm"]["create_users"] = true
 default["php_fpm"]["users"] = 
